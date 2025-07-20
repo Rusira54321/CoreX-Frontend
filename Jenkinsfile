@@ -1,31 +1,21 @@
 pipeline {
     agent any
+
+    tools {
+        nodejs 'node 22'  // Use the name you gave in Jenkins
+    }
+
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'node:22-alpine'
-                    reuseNode true
-                }
-            }
             steps {
-                sh '''
-                    npm install
-                    npm run build
-                '''
+                bat 'npm install'
+                bat 'npm run build'
             }
         }
+
         stage('Test') {
-            agent {
-                docker {
-                    image 'node:22-alpine'
-                    reuseNode true
-                }
-            }
             steps {
-                sh '''
-                    npm test
-                '''
+                bat 'npm test'
             }
         }
     }
