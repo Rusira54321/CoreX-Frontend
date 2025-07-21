@@ -11,19 +11,7 @@ RUN npm install
 #copy the rest of the projects
 COPY . .
 
-#Build the app
-RUN npm run build
-
-#stage 2:Serve with Nginx
-FROM nginx:alpine
-
-
-# Copy build folder to Nginx's default public folder
-COPY --from=build /app/build /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
-
-#StartNginx when container runs
-CMD ["nginx", "-g", "daemon off;"]
-
+#Expose port 5170
+EXPOSE 3000
+#create the react app
+CMD ["npm", "run", "dev", "--", "--host"]
