@@ -10,7 +10,7 @@ const Watches = () => {
   const [brand,setbrand] = useState("")
   const [filterwatches,setfilterwatches] = useState([])
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(100000);
+  const [maxPrice, setMaxPrice] = useState(200000);
   useEffect(() => {
     const filteredWatches = watchdatas.map((watch) => {
       return {
