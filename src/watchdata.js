@@ -10,6 +10,7 @@ import image13 from "./assets/watch13.jpg";
 import image14 from "./assets/watch14.jpg";
 export const watchdatas = [
   {
+    id:1,
     name: "Omega Seamaster Aqua Terra",
     price: 85000,
     description: "A timeless luxury watch with co-axial movement and a blue dial.",
@@ -20,6 +21,7 @@ export const watchdatas = [
     CreatedAt: "2024-07-01T10:00:00.000Z"
   },
   {
+    id:2,
     name: "Rolex Datejust 36",
     price: 120000,
     description: "Classic Rolex elegance with automatic movement and fluted bezel.",
@@ -30,6 +32,7 @@ export const watchdatas = [
     CreatedAt: "2024-07-02T12:30:00.000Z"
   },
   {
+    id:3,
     name: "Cartier Ballon Bleu",
     price: 110000,
     description: "Sophisticated design with Roman numeral dial and sapphire cabochon.",
@@ -40,6 +43,7 @@ export const watchdatas = [
     CreatedAt: "2024-07-03T15:45:00.000Z"
   },
   {
+    id:4,
     name: "Tissot PRX Quartz",
     price: 45000,
     description: "A modern reissue of a 70s classic with integrated bracelet.",
@@ -50,6 +54,7 @@ export const watchdatas = [
     CreatedAt: "2024-07-04T09:20:00.000Z"
   },
   {
+    id:5,
     name: "Seiko Prospex Diver",
     price: 38000,
     description: "Durable dive watch with 200m water resistance and solar power.",
@@ -60,6 +65,7 @@ export const watchdatas = [
     CreatedAt: "2024-07-05T14:15:00.000Z"
   },
   {
+    id:6,
     name: "Fossil Jacqueline",
     price: 18000,
     description: "Elegant and feminine watch with rose-gold tones.",
@@ -70,6 +76,7 @@ export const watchdatas = [
     CreatedAt: "2024-07-06T17:05:00.000Z"
   },
   {
+    id:7,
     name: "Casio G-Shock GA2100",
     price: 22000,
     description: "Shock-resistant, lightweight, and stylish — the 'CasiOak'.",
@@ -80,6 +87,7 @@ export const watchdatas = [
     CreatedAt: "2024-07-07T08:30:00.000Z"
   },
   {
+    id:8,
     name: "Tag Heuer Carrera",
     price: 95000,
     description: "Sleek chronograph with racing-inspired details and premium build.",
@@ -90,6 +98,7 @@ export const watchdatas = [
     CreatedAt: "2024-07-08T11:50:00.000Z"
   },
   {
+    id:9,
     name: "Michael Kors Darci",
     price: 26000,
     description: "Stylish fashion watch with crystal embellishments.",
@@ -100,6 +109,7 @@ export const watchdatas = [
     CreatedAt: "2024-07-09T16:10:00.000Z"
   },
   {
+    id:10,
     name: "Citizen Eco-Drive Chandler",
     price: 30000,
     description: "Eco-powered field watch with military design inspiration.",

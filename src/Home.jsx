@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import ImageSlideshow from './ImageSlideshow'
 import {watchdatas} from "./watchdata"
 import { Headset, Truck, ShieldCheck, Diamond } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 const firstfour = watchdatas.slice(0, 4);
 const toppicks = watchdatas.slice(4, 8);
 const Home = () => {
+  const navigate = useNavigate()
     const features  =[{
       icon: <Headset className="w-10 h-10 text-blue-600 mx-auto" />,
       title: "24/7 Customer Support",
@@ -67,7 +69,7 @@ const Home = () => {
         {/* Example Watch Cards */}
         {
             firstfour.map((watch, index) => (
-              <div key={index} className="bg-white shadow-lg rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
+              <div key={index} onClick={()=>{navigate(`/watch/${watch.id}`)}} className="bg-white cursor-pointer shadow-lg rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
                 <img src={watch.image} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-1">{watch.name}</h3>
@@ -96,7 +98,7 @@ const Home = () => {
         {/* Example Watch Cards */}
         {
             toppicks.map((watch, index) => (
-              <div key={index} className="bg-white shadow-lg rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
+              <div key={index} onClick={()=>{navigate(`/watch/${watch.id}`)}} className="bg-white shadow-lg cursor-pointer rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
                 <img src={watch.image} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-1">{watch.name}</h3>
