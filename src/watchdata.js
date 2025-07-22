@@ -6,6 +6,8 @@ import image9  from "./assets/watch9.jpg";
 import image10 from "./assets/watch10.jpg"; 
 import image11 from "./assets/watch11.jpg";
 import image12 from "./assets/watch12.jpg";
+import image13 from "./assets/watch13.jpg";
+import image14 from "./assets/watch14.jpg";
 export const watchdatas = [
   {
     name: "Omega Seamaster Aqua Terra",
@@ -91,7 +93,7 @@ export const watchdatas = [
     name: "Michael Kors Darci",
     price: 26000,
     description: "Stylish fashion watch with crystal embellishments.",
-    image: "/images/mk-darci.jpg",
+    image: image13,
     brand: "Michael Kors",
     Gender: "Women",
     stock: 18,
@@ -101,7 +103,7 @@ export const watchdatas = [
     name: "Citizen Eco-Drive Chandler",
     price: 30000,
     description: "Eco-powered field watch with military design inspiration.",
-    image: "/images/citizen-chandler.jpg",
+    image:image14,
     brand: "Citizen",
     Gender: "Unisex",
     stock: 14,

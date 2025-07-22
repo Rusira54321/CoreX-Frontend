@@ -63,18 +63,18 @@ const Home = () => {
         {/* Horizontal line fills the remaining space */}
         <div className="flex-grow ml-4 border-t border-gray-300"></div>
       </div>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 px-4 sm:px-6 md:px-8 lg:px-10'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8 px-4 sm:px-6 md:px-8 lg:px-10'>
         {/* Example Watch Cards */}
         {
             firstfour.map((watch, index) => (
-              <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden">
-                <img src={watch.image} alt={watch.name} className="w-full h-48 object-cover" />
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold">{watch.name}</h3>
-                  <p className="text-gray-600 mt-1">{watch.description}</p>
+              <div key={index} className="bg-white shadow-lg rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
+                <img src={watch.image} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-800 mb-1">{watch.name}</h3>
+                  <p className="text-gray-500 mb-3 text-sm">{watch.description}</p>
                   <div className="mt-2 flex items-center justify-between">
-                    <span className="text-xl font-bold text-blue-600">${watch.price.toLocaleString()}</span>
-                    <span className={`text-sm ${watch.stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    <span className="text-2xl font-bold text-blue-600">Rs{watch.price.toLocaleString()}</span>
+                    <span className={`text-xs px-2 py-1 rounded-full font-semibold ${watch.stock > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                       {watch.stock > 0 ? 'In Stock' : 'Out of Stock'}
                     </span>
                   </div>
@@ -92,18 +92,18 @@ const Home = () => {
         {/* Horizontal line fills the remaining space */}
         <div className="flex-grow ml-4 border-t border-gray-300"></div>
       </div>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 px-4 sm:px-6 md:px-8 lg:px-10'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8 px-4 sm:px-6 md:px-8 lg:px-10'>
         {/* Example Watch Cards */}
         {
             toppicks.map((watch, index) => (
-              <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden">
-                <img src={watch.image} alt={watch.name} className="w-full h-48 object-cover" />
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold">{watch.name}</h3>
-                  <p className="text-gray-600 mt-1">{watch.description}</p>
+              <div key={index} className="bg-white shadow-lg rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
+                <img src={watch.image} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-800 mb-1">{watch.name}</h3>
+                  <p className="text-gray-500 mb-3 text-sm">{watch.description}</p>
                   <div className="mt-2 flex items-center justify-between">
-                    <span className="text-xl font-bold text-blue-600">${watch.price.toLocaleString()}</span>
-                    <span className={`text-sm ${watch.stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    <span className="text-2xl font-bold text-blue-600">${watch.price.toLocaleString()}</span>
+                    <span className={`text-xs px-2 py-1 rounded-full font-semibold ${watch.stock > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                       {watch.stock > 0 ? 'In Stock' : 'Out of Stock'}
                     </span>
                   </div>
@@ -114,13 +114,13 @@ const Home = () => {
       </div>
       <div className='mt-16 px-4 sm:px-6 md:px-8 lg:px-10 mb-20'>
             <h2 className='text-2xl font-bold text-center mb-8'>Why Choose CorexWatches?</h2>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
                 {
                     features.map((feature,index)=>(
-                        <div key={index} className='bg-white shadow-md rounded-lg p-6 text-center'>
+                        <div key={index} className='bg-white shadow-lg rounded-2xl p-8 text-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100'>
                             {feature.icon}
-                             <h3 className="mt-4 font-semibold text-lg">{feature.title}</h3>
-                             <p className="text-gray-600 mt-2 text-sm">{feature.description}</p>
+                             <h3 className="mt-4 font-bold text-lg text-gray-800">{feature.title}</h3>
+                             <p className="text-gray-500 mt-2 text-sm">{feature.description}</p>
                         </div>
                     ))
                 }
