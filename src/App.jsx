@@ -6,6 +6,7 @@ import Home from './Home'
 import Watches from './Watches'
 import Watch from './Watch'
 import Cart from './Cart'
+import Login from "./Login"
 const App = () => {
   return (
     <div>
@@ -15,6 +16,7 @@ const App = () => {
             <Route path='/watches' element={<Watches/>}/>
             <Route path='/watch/:id' element={<Watch/>}/>
             <Route path='/cart' element={<Cart/>}/>
+            <Route path='/login' element={<Login/>}/>
       </Route>
     </Routes>
     </div>

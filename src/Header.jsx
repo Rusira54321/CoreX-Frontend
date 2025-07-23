@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ShoppingCart, LogIn, Menu, X } from 'lucide-react';
-
+import {Link} from "react-router-dom"
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -15,18 +15,18 @@ const Header = () => {
 
         {/* Desktop Nav */}
         <nav className="space-x-6 hidden md:flex">
-          <a href="/" className="text-gray-700 hover:text-blue-600 font-medium">
+          <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium">
             Home
-          </a>
-          <a href="/watches" className="text-gray-700 hover:text-blue-600 font-medium">
+          </Link>
+          <Link to="/watches" className="text-gray-700 hover:text-blue-600 font-medium">
             Watches
-          </a>
-          <a href="/cart" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+          </Link>
+          <Link to="/cart" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
             <ShoppingCart className="h-5 w-5 mr-1" /> Cart
-          </a>
-          <a href="/login" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+          </Link>
+          <Link to="/login" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
             <LogIn className="h-5 w-5 mr-1" /> Login
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -41,18 +41,18 @@ const Header = () => {
       {/* Mobile Dropdown */}
       {menuOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2">
-          <a href="/" className="block text-gray-700 hover:text-blue-600 font-medium">
+          <Link to="/" className="block text-gray-700 hover:text-blue-600 font-medium">
             Home
-          </a>
-          <a href="/watches" className="block text-gray-700 hover:text-blue-600 font-medium">
+          </Link>
+          <Link to="/watches" className="block text-gray-700 hover:text-blue-600 font-medium">
             Watches
-          </a>
-          <a href="/cart" className="block text-gray-700 hover:text-blue-600 font-medium flex items-center">
+          </Link>
+          <Link to="/cart" className="block text-gray-700 hover:text-blue-600 font-medium flex items-center">
             <ShoppingCart className="h-5 w-5 mr-1" /> Cart
-          </a>
-          <a href="/login" className="block text-gray-700 hover:text-blue-600 font-medium flex items-center">
+          </Link>
+          <Link to="/login" className="block text-gray-700 hover:text-blue-600 font-medium flex items-center">
             <LogIn className="h-5 w-5 mr-1" /> Login
-          </a>
+          </Link>
         </div>
       )}
     </header>

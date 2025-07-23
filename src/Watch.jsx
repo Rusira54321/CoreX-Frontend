@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { watchdatas } from './watchdata';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import {useCart} from "./CartContext"
 const Watch = () => {
+  const {addToCart,CartItems} = useCart()
   const navigate = useNavigate()
   const { id } = useParams();
   const [watchdata, setwatchdata] = useState({});
@@ -12,6 +13,13 @@ const Watch = () => {
   const [relatedwatches, setrelatedwatches] = useState([]);
   const [relatedStart, setRelatedStart] = useState(0);
   const [relatedVisible, setRelatedVisible] = useState(4);
+  const additemstocart = (watchdata,quantity) =>{
+      if(quantity>0)
+      {
+        addToCart(watchdata,quantity)
+        alert("Succesfully added")
+      }
+  }
   // Responsive: set number of visible related items
   useEffect(() => {
     function updateVisible() {
@@ -119,7 +127,7 @@ const Watch = () => {
 
           {/* Action Buttons */}
           <div className="mt-6 flex flex-col gap-3">
-            <button className="w-full cursor-pointer h-[50px] bg-orange-600 text-white rounded shadow hover:bg-orange-700 transition hover:underline">
+            <button onClick={()=>additemstocart(watchdata,quantity)} className="w-full cursor-pointer h-[50px] bg-orange-600 text-white rounded shadow hover:bg-orange-700 transition hover:underline">
               Add to Cart
             </button>
             <button className="w-full h-[50px] cursor-pointer bg-gray-800 text-white rounded shadow hover:bg-gray-900 transition hover:underline">

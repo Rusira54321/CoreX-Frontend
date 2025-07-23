@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
-
+import {Link} from "react-router-dom"
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 py-10 px-4 sm:px-8 md:px-12">
@@ -17,10 +17,10 @@ const Footer = () => {
         <div>
           <h4 className="text-lg font-semibold text-white mb-2">Quick Links</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="/" className="hover:text-white">Home</a></li>
-            <li><a href="/watches" className="hover:text-white">Shop</a></li>
-            <li><a href="/about" className="hover:text-white">About Us</a></li>
-            <li><a href="/contact" className="hover:text-white">Contact</a></li>
+            <li><Link to="/" className="hover:text-white">Home</Link></li>
+            <li><Link to="/watches" className="hover:text-white">Shop</Link></li>
+            <li><Link to="/about" className="hover:text-white">About Us</Link></li>
+            <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
           </ul>
         </div>
 
@@ -28,10 +28,10 @@ const Footer = () => {
         <div>
           <h4 className="text-lg font-semibold text-white mb-2">Support</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="/faq" className="hover:text-white">FAQ</a></li>
-            <li><a href="/shipping" className="hover:text-white">Shipping & Returns</a></li>
-            <li><a href="/privacy" className="hover:text-white">Privacy Policy</a></li>
-            <li><a href="/terms" className="hover:text-white">Terms of Service</a></li>
+            <li><Link to="/faq" className="hover:text-white">FAQ</Link></li>
+            <li><Link to="/shipping" className="hover:text-white">Shipping & Returns</Link></li>
+            <li><Link to="/privacy" className="hover:text-white">Privacy Policy</Link></li>
+            <li><Link to="/terms" className="hover:text-white">Terms of Service</Link></li>
           </ul>
         </div>
 
@@ -39,10 +39,10 @@ const Footer = () => {
         <div>
           <h4 className="text-lg font-semibold text-white mb-2">Follow Us</h4>
           <div className="flex space-x-4 mt-2">
-            <a href="#" aria-label="Facebook"><Facebook className="w-5 h-5 hover:text-blue-500" /></a>
-            <a href="#" aria-label="Instagram"><Instagram className="w-5 h-5 hover:text-pink-500" /></a>
-            <a href="#" aria-label="Twitter"><Twitter className="w-5 h-5 hover:text-sky-400" /></a>
-            <a href="mailto:corex@gmail.com" aria-label="Email"><Mail className="w-5 h-5 hover:text-green-400" /></a>
+            <Link to="#" aria-label="Facebook"><Facebook className="w-5 h-5 hover:text-blue-500" /></Link>
+            <Link to="#" aria-label="Instagram"><Instagram className="w-5 h-5 hover:text-pink-500" /></Link>
+            <Link to="#" aria-label="Twitter"><Twitter className="w-5 h-5 hover:text-sky-400" /></Link>
+            <Link to="mailto:corex@gmail.com" aria-label="Email"><Mail className="w-5 h-5 hover:text-green-400" /></Link>
           </div>
         </div>
       </div>
