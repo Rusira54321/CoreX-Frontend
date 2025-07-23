@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useCart } from './CartContext'
+import {toast,Bounce} from "react-toastify"
 
 const Cart = () => {
   const { CartItems, removeFromCart, updateQuantity } = useCart()
@@ -19,11 +20,27 @@ const Cart = () => {
   const removeitem = (id) => {
     removeFromCart(id)
   }
-
-  useEffect(() => {
-    console.log(CartItems)
-  }, [CartItems])
-
+  const checkout = () =>{
+    const token = localStorage.getItem("token")
+    if(token == null)
+    {
+      toast.error("You are not registered user first login or sigunup", {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: false,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                      transition: Bounce,
+                    })
+      return
+    }
+    else{
+      
+    }
+  }
   return (
     <div className="px-4 sm:px-6 lg:px-10 py-8 bg-gray-50 min-h-screen">
       <h1 className="text-center text-3xl font-bold mb-4">🛒 SHOPPING CART</h1>
@@ -93,7 +110,8 @@ const Cart = () => {
               <p className="font-semibold text-gray-900">Rs. {total}</p>
             </div>
             <button
-              className="w-full mt-5 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+              onClick={()=>checkout()}
+              className="w-full cursor-pointer mt-5 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
               disabled={CartItems.length === 0}
             >
               Proceed to Checkout

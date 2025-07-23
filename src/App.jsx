@@ -7,9 +7,12 @@ import Watches from './Watches'
 import Watch from './Watch'
 import Cart from './Cart'
 import Login from "./Login"
+import SignUp from './SignUp'
+import {ToastContainer} from "react-toastify"
 const App = () => {
   return (
     <div>
+    <ToastContainer/>
     <Routes>
       <Route path='/' element={<Layout/>}>
             <Route index element={<Home/>}/>
@@ -17,6 +20,7 @@ const App = () => {
             <Route path='/watch/:id' element={<Watch/>}/>
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/Signup' element={<SignUp/>}/>
       </Route>
     </Routes>
     </div>
