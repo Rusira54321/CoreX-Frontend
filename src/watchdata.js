@@ -83,7 +83,7 @@ export const watchdatas = [
     image: image11,
     brand: "Casio",
     Gender: "Unisex",
-    stock: 25,
+    stock: 0,
     CreatedAt: "2024-07-07T08:30:00.000Z"
   },
   {
@@ -116,6 +116,104 @@ export const watchdatas = [
     image:image14,
     brand: "Citizen",
     Gender: "Unisex",
+    stock: 14,
+    CreatedAt: "2024-07-10T13:25:00.000Z"
+  },{
+    id:11,
+    name: "Cartier Ballon Bleu",
+    price: 110000,
+    description: "Sophisticated design with Roman numeral dial and sapphire cabochon.",
+    image:image7,
+    brand: "Rolex",
+    Gender: "Men",
+    stock: 4,
+    CreatedAt: "2024-07-03T15:45:00.000Z"
+  },
+  {
+    id:12,
+    name: "Tissot PRX Quartz",
+    price: 45000,
+    description: "A modern reissue of a 70s classic with integrated bracelet.",
+    image: image8,
+    brand: "Rolex",
+    Gender: "Men",
+    stock: 20,
+    CreatedAt: "2024-07-04T09:20:00.000Z"
+  },
+  {
+    id:13,
+    name: "Seiko Prospex Diver",
+    price: 38000,
+    description: "Durable dive watch with 200m water resistance and solar power.",
+    image: image9,
+    brand: "Rolex",
+    Gender: "Men",
+    stock: 12,
+    CreatedAt: "2024-07-05T14:15:00.000Z"
+  },
+  {
+    id:14,
+    name: "Fossil Jacqueline",
+    price: 18000,
+    description: "Elegant and feminine watch with rose-gold tones.",
+    image: image10,
+    brand: "Rolex",
+    Gender: "Men",
+    stock: 16,
+    CreatedAt: "2024-07-06T17:05:00.000Z"
+  },
+  {
+    id:15,
+    name: "Casio G-Shock GA2100",
+    price: 22000,
+    description: "Shock-resistant, lightweight, and stylish — the 'CasiOak'.",
+    image: image11,
+    brand: "Rolex",
+    Gender: "Men",
+    stock: 0,
+    CreatedAt: "2024-07-07T08:30:00.000Z"
+  },
+  {
+    id:16,
+    name: "Tag Heuer Carrera",
+    price: 95000,
+    description: "Sleek chronograph with racing-inspired details and premium build.",
+    image: image12,
+    brand: "Rolex",
+    Gender: "Men",
+    stock: 6,
+    CreatedAt: "2024-07-08T11:50:00.000Z"
+  },
+  {
+    id:17,
+    name: "Michael Kors Darci",
+    price: 26000,
+    description: "Stylish fashion watch with crystal embellishments.",
+    image: image13,
+    brand: "Rolex",
+    Gender: "Men",
+    stock: 18,
+    CreatedAt: "2024-07-09T16:10:00.000Z"
+  },
+  {
+    id:18,
+    name: "Citizen Eco-Drive Chandler",
+    price: 30000,
+    description: "Eco-powered field watch with military design inspiration.",
+    image:image14,
+    brand: "Rolex",
+    Gender: "Men",
+    stock: 14,
+    CreatedAt: "2024-07-10T13:25:00.000Z"
+  },
+    {
+    id:19,
+    name: "Citizen Eco-Drive Chandler",
+    price: 30000,
+    description: "Eco-powered field watch with military design inspiration.",
+    image:image14,
+    brand: "Rolex",
+    Gender: "Men",
     stock: 14,
     CreatedAt: "2024-07-10T13:25:00.000Z"
   }
