@@ -17,7 +17,6 @@ const Watch = () => {
       if(quantity>0)
       {
         addToCart(watchdata,quantity)
-        alert("Succesfully added")
       }
   }
   // Responsive: set number of visible related items

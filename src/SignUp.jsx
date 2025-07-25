@@ -18,6 +18,7 @@ const SignUp = () => {
             ).then((res)=>{
                     const token = res.data.token
                     const role = res.data.role
+                    localStorage.setItem("email",email)
                     localStorage.setItem("token",token)
                     localStorage.setItem("role",role)
                     toast.success(res.data.message, {

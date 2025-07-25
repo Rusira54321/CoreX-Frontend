@@ -1,15 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import { useCart } from './CartContext'
 import {toast,Bounce} from "react-toastify"
+import axios from "axios"
+import {loadStripe} from "@stripe/stripe-js"
 
 const Cart = () => {
   const { CartItems, removeFromCart, updateQuantity } = useCart()
   const [total, setTotal] = useState(0)
-
+  const [itemsdata,setitemsdata] = useState([])
   const changeQuantity = (value, id) => {
     updateQuantity(id, value)
   }
-
+  const key = import.meta.env.VITE_CURRENCY_CONVERTER
+  const stripekey = import.meta.env.VITE_STRIPE_KEY
+  const BASE_URL = `https://v6.exchangerate-api.com/v6/${key}/latest/`;
+  const convertCurrency = async (from, to, amount) => {
+    try {
+      const response = await axios.get(`${BASE_URL}${from}`);
+      const rate = response.data.conversion_rates[to];
+      if (!rate) {
+        console.log(`Exchange rate for ${to} not found.`);
+        return 0;
+      }
+      var convertedAmount = parseFloat((amount * rate).toFixed(2));
+      return convertedAmount;
+    } catch (error) {
+      console.error("Error fetching exchange rate:", error.message);
+      return 0;
+    }
+  };
   useEffect(() => {
     if (CartItems && Array.isArray(CartItems)) {
       const totalAmount = CartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
@@ -20,27 +39,72 @@ const Cart = () => {
   const removeitem = (id) => {
     removeFromCart(id)
   }
-  const checkout = () =>{
-    const token = localStorage.getItem("token")
-    if(token == null)
-    {
-      toast.error("You are not registered user first login or sigunup", {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: false,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "dark",
-                      transition: Bounce,
-                    })
-      return
-    }
-    else{
-      
-    }
+  const checkout = async () => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    toast.error("You are not a registered user. Please login or sign up.", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+    return;
   }
+
+  try {
+    const updatedItems = await Promise.all(
+      CartItems.map(async (item) => {
+        const priceInUSD = await convertCurrency("LKR", "USD", item.price);
+        return {
+          Gender: item.Gender,
+          brand: item.brand,
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          priceUSD: priceInUSD,
+        };
+      })
+    );
+    setitemsdata(updatedItems);
+    const email = localStorage.getItem("email")
+    const stripe = await loadStripe(stripekey)
+    await axios.post(`http://localhost:5000/stripes/create-checkout-session`,{
+      items:itemsdata,
+      email:email
+    }).then(async(res)=>{
+      const session = await res.data;
+    const result = await stripe.redirectToCheckout({
+            sessionId:session.id
+          })
+          if(result.error)
+          {
+            console.log(result.error);
+            alert(result.error.message)
+          }
+    }).catch((error)=>{
+toast.error(error.response.data.message, {
+                                position: "top-right",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: false,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "dark",
+                                transition: Bounce,
+                            })
+    })
+  } catch (err) {
+    console.error("Checkout error:", err.message);
+  }
+};
   return (
     <div className="px-4 sm:px-6 lg:px-10 py-8 bg-gray-50 min-h-screen">
       <h1 className="text-center text-3xl font-bold mb-4">🛒 SHOPPING CART</h1>

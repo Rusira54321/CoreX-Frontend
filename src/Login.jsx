@@ -17,6 +17,7 @@ const Login = () => {
               const role = res.data.role
               localStorage.setItem("token",token)
               localStorage.setItem("role",role)
+              localStorage.setItem("email",email)
               toast.success(res.data.message, {
                             position: "top-right",
                             autoClose: 5000,        
