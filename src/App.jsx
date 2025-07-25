@@ -9,6 +9,7 @@ import Cart from './Cart'
 import Login from "./Login"
 import SignUp from './SignUp'
 import {ToastContainer} from "react-toastify"
+import SuccessfulPayment from './SuccessfulPayment'
 const App = () => {
   return (
     <div>
@@ -21,6 +22,7 @@ const App = () => {
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/Signup' element={<SignUp/>}/>
+            <Route path='/successfulPayment' element={<SuccessfulPayment/>}/>
       </Route>
     </Routes>
     </div>

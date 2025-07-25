@@ -56,7 +56,6 @@ const Cart = () => {
     });
     return;
   }
-
   try {
     const updatedItems = await Promise.all(
       CartItems.map(async (item) => {
@@ -74,10 +73,15 @@ const Cart = () => {
     );
     setitemsdata(updatedItems);
     const email = localStorage.getItem("email")
+    const token = localStorage.getItem("token")
     const stripe = await loadStripe(stripekey)
-    await axios.post(`http://localhost:5000/stripes/create-checkout-session`,{
-      items:itemsdata,
+    await axios.post(`http://localhost:8000/stripe/checkout`,{
+      items:updatedItems,
       email:email
+    },{
+      headers:{
+        "Authorization":`Bearer ${token}`
+      }
     }).then(async(res)=>{
       const session = await res.data;
     const result = await stripe.redirectToCheckout({
