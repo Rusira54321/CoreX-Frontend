@@ -63,7 +63,7 @@ const Cart = () => {
         return {
           Gender: item.Gender,
           brand: item.brand,
-          id: item.id,
+          id: item._id,
           name: item.name,
           price: item.price,
           quantity: item.quantity,
@@ -118,10 +118,10 @@ toast.error(error.response.data.message, {
         <div className="w-full lg:w-3/4">
           {CartItems && CartItems.length != 0 ? (
             CartItems.map((item, index) => (
-              <div className="mb-6 border rounded-lg p-4 shadow bg-white" key={item.id}>
+              <div className="mb-6 border rounded-lg p-4 shadow bg-white" key={item._id}>
                 <div className="flex flex-col md:flex-row gap-4">
                   <img
-                    src={item.image}
+                    src={`http://localhost:8000/images/${item.image}`}
                     className="h-[150px] w-full md:w-[200px] object-cover rounded-lg border"
                     alt={item.name}
                   />
@@ -132,7 +132,7 @@ toast.error(error.response.data.message, {
                         <p className="text-sm text-gray-500">Gender: {item.Gender}</p>
                       </div>
                       <button
-                        onClick={() => removeitem(item.id)}
+                        onClick={() => removeitem(item._id)}
                         className="mt-4 w-full sm:w-[100px] bg-red-500 text-white py-1 rounded hover:bg-red-600 transition"
                       >
                         Remove
@@ -149,7 +149,7 @@ toast.error(error.response.data.message, {
                         <input
                           type="number"
                           value={item.quantity}
-                          onChange={(e) => changeQuantity(e.target.value, item.id)}
+                          onChange={(e) => changeQuantity(e.target.value, item._id)}
                           className="w-[80px] border border-gray-300 px-2 py-1 rounded mt-1"
                           min={1}
                           max={item.stock}

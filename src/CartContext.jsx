@@ -5,10 +5,10 @@ export const CartProvider = ({children}) =>{
     const [CartItems,setCartItems] = useState([])
     const addToCart = (product,quantity) =>{
         setCartItems(prev=>{
-            const existing = prev.find(item=>item.id===product.id)
+            const existing = prev.find(item=>item._id===product._id)
             if(existing)
             {
-                return prev.map(item=>item.id===product.id?{
+                return prev.map(item=>item._id===product._id?{
                     ...item,quantity:quantity
                 }:
                 item
@@ -22,11 +22,11 @@ export const CartProvider = ({children}) =>{
         })
     }
     const removeFromCart = (id) =>{
-        setCartItems(prev=>prev.filter(item=>item.id!==id))
+        setCartItems(prev=>prev.filter(item=>item._id!==id))
     }
     const updateQuantity = (id,qty) =>{
             setCartItems(prev=>prev.map(item=>
-                item.id===id?
+                item._id===id?
                 {
                     ...item,quantity:qty
                 }

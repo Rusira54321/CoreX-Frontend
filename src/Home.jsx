@@ -1,11 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ImageSlideshow from './ImageSlideshow'
-import {watchdatas} from "./watchdata"
 import { Headset, Truck, ShieldCheck, Diamond } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-const firstfour = watchdatas.slice(0, 4);
-const toppicks = watchdatas.slice(4, 8);
+import axios from 'axios';
 const Home = () => {
+  const [bestsellers,setbestsellers] = useState([])
+  const [latestproducts,setlatestproducts] =useState([])
+  useEffect(()=>{
+    const token = localStorage.getItem("token")
+    const getlatestproducts = async() =>{
+        await axios.get("http://localhost:8000/product/getlatestproduct").then((res)=>{
+          setlatestproducts(res.data.product)
+        })
+    }
+    getlatestproducts()
+    const getbestsellingproducts = async() =>{
+        await axios.get("http://localhost:8000/product/getbestsellingproduct").then((res)=>{
+            setbestsellers(res.data.product)
+        })
+    }
+    getbestsellingproducts()
+  },[])
   const navigate = useNavigate()
     const features  =[{
       icon: <Headset className="w-10 h-10 text-blue-600 mx-auto" />,
@@ -68,9 +83,9 @@ const Home = () => {
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8 px-4 sm:px-6 md:px-8 lg:px-10'>
         {/* Example Watch Cards */}
         {
-            firstfour.map((watch, index) => (
-              <div key={index} onClick={()=>{navigate(`/watch/${watch.id}`)}} className="bg-white cursor-pointer shadow-lg rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
-                <img src={watch.image} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
+            latestproducts.map((watch, index) => (
+              <div key={index} onClick={()=>{navigate(`/watch/${watch._id}`)}} className="bg-white cursor-pointer shadow-lg rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
+                <img src={`http://localhost:8000/images/${watch.image}`} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-1">{watch.name}</h3>
                   <p className="text-gray-500 mb-3 text-sm">{watch.description}</p>
@@ -97,9 +112,9 @@ const Home = () => {
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8 px-4 sm:px-6 md:px-8 lg:px-10'>
         {/* Example Watch Cards */}
         {
-            toppicks.map((watch, index) => (
-              <div key={index} onClick={()=>{navigate(`/watch/${watch.id}`)}} className="bg-white shadow-lg cursor-pointer rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
-                <img src={watch.image} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
+            bestsellers.map((watch, index) => (
+              <div key={index} onClick={()=>{navigate(`/watch/${watch._id}`)}} className="bg-white shadow-lg cursor-pointer rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
+                <img src={`http://localhost:8000/images/${watch.image}`} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-1">{watch.name}</h3>
                   <p className="text-gray-500 mb-3 text-sm">{watch.description}</p>

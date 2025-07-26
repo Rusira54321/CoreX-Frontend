@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { watchdatas } from './watchdata'
 import { useNavigate } from 'react-router-dom'
-
+import axios from 'axios'
 const Watches = () => {
   const navigate = useNavigate()
+  const [allwatches,setallwatches] = useState([])
   const [watches, setWatches] = useState([])
   const [gender,setgender] = useState("")
   const [availability,setavailability] = useState("")
@@ -12,23 +12,36 @@ const Watches = () => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(200000);
   useEffect(() => {
-    const filteredWatches = watchdatas.map((watch) => {
-      return {
-        id: watch.id,
+  const token = localStorage.getItem("token");
+  
+  const getallwatches = async () => {
+    try {
+      const res = await axios.get("http://localhost:8000/product/getallwatches");
+      setallwatches(res.data.watches);
+
+      // ✅ Format the data right after fetching
+      const formatted = res.data.watches.map((watch) => ({
+        id: watch._id,
         name: watch.name,
         price: watch.price,
         image: watch.image,
         brand: watch.brand,
         Gender: watch.Gender,
         availability: watch.stock > 0 ? 'In Stock' : 'Out of Stock'
-      }
-    })
-    setWatches(filteredWatches)
-    setfilterwatches(filteredWatches)
-  }, [])
+      }));
+
+      setWatches(formatted);
+      setfilterwatches(formatted);
+    } catch (error) {
+      console.error("Error fetching watches:", error);
+    }
+  };
+
+  getallwatches();
+}, []);
   useEffect(() => {
     let result = watches;
-    if (!gender && !availability && !brand && minPrice === 0 && maxPrice === 100000) {
+    if (!gender && !availability && !brand && minPrice === 0 && maxPrice === 200000) {
       result = watches;
     }
     if (gender) {
@@ -137,7 +150,7 @@ const Watches = () => {
             className="bg-white cursor-pointer rounded-xl shadow-md hover:shadow-xl transition duration-300 p-4 flex flex-col items-center"
           >
             <img
-              src={watch.image}
+              src={`http://localhost:8000/images/${watch.image}`}
               alt={watch.name}
               className="w-full h-48 object-cover rounded-md mb-4"
             />
