@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios"
 import {toast,Bounce} from "react-toastify"
 
 const Login = () => {
+  const navigate = useNavigate()
   const [email,setemail] = useState("")
   const [password,setpassword] = useState("")
   const URL = "http://localhost:8000/user/login"
@@ -18,6 +19,10 @@ const Login = () => {
               localStorage.setItem("token",token)
               localStorage.setItem("role",role)
               localStorage.setItem("email",email)
+              if(role=="admin")
+              {
+                 navigate(`/admin/dashboard`)
+              }
               toast.success(res.data.message, {
                             position: "top-right",
                             autoClose: 5000,        

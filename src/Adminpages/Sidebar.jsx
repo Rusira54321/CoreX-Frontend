@@ -31,33 +31,36 @@ const Sidebar = () => {
 
       {/* 🟢 Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300
+        className={`fixed top-0 left-0 min-h-screen w-64 bg-white shadow-lg z-50 transform transition-transform duration-300
           ${open ? 'translate-x-0' : '-translate-x-full'} 
-          md:translate-x-0 md:static md:block md:h-screen overflow-y-auto`}
+          md:translate-x-0 md:static md:block`}
       >
-        {/* Sidebar Header (mobile only) */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 md:hidden">
-          <h1 className="text-xl font-bold text-blue-700">Admin Panel</h1>
-          <button onClick={() => setOpen(false)} className="text-2xl text-gray-600">&times;</button>
-        </div>
+        {/* Sidebar Content Wrapper */}
+        <div className="flex flex-col min-h-screen overflow-y-auto">
+          {/* Sidebar Header (mobile only) */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 md:hidden">
+            <h1 className="text-xl font-bold text-blue-700">Admin Panel</h1>
+            <button onClick={() => setOpen(false)} className="text-2xl text-gray-600">&times;</button>
+          </div>
 
-        {/* Navigation Links */}
-        <nav className="flex flex-col gap-2 p-4 mt-2">
-          {navLinks.map(link => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors duration-150 ${
-                location.pathname === link.path
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'text-gray-700 hover:bg-blue-50 hover:text-blue-700'
-              }`}
-              onClick={() => setOpen(false)}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+          {/* Navigation Links */}
+          <nav className="flex flex-col gap-2 p-4 mt-2 flex-grow">
+            {navLinks.map(link => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors duration-150 ${
+                  location.pathname === link.path
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-700 hover:bg-blue-50 hover:text-blue-700'
+                }`}
+                onClick={() => setOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
       </aside>
 
       {/* 🔴 Overlay (mobile only) */}
