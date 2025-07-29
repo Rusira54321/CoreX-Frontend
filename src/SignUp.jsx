@@ -6,6 +6,7 @@ const SignUp = () => {
     const [name,setname] = useState("")
     const [email,setemail] = useState("")
     const [password,setpassword] = useState("")
+    const [address,setaddress] = useState("")
     const URL = "http://localhost:8000/user/register"
     const handleSubmit = async(e) =>{
             e.preventDefault()
@@ -13,7 +14,8 @@ const SignUp = () => {
                 {
                     name:name,
                     email:email,
-                    password:password
+                    password:password,
+                    address:address
                 }
             ).then((res)=>{
                     const token = res.data.token
@@ -35,6 +37,7 @@ const SignUp = () => {
                     setname("")
                     setemail("")
                     setpassword("")
+                    setaddress("")
             }).catch((error)=>{
                     toast.error(error.response.data.message, {
                                 position: "top-right",
@@ -64,6 +67,10 @@ const SignUp = () => {
         <div className="flex flex-col gap-1">
           <label htmlFor="password" className="text-sm font-medium text-gray-700">Password</label>
           <input required id="password" type="password" value={password} onChange={(e)=>setpassword(e.target.value)} className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" placeholder="Enter your password" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="address" className="text-sm font-medium text-gray-700">Address</label>
+          <input required id="address" type="text" value={address} onChange={(e)=>setaddress(e.target.value)} className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" placeholder="Enter your address" />
         </div>
         <button type="submit" className="mt-2 w-full bg-blue-600 text-white py-2 rounded-lg font-semibold shadow hover:bg-blue-700 transition">Sign Up</button>
         <div className="text-center mt-2 text-sm text-gray-600">

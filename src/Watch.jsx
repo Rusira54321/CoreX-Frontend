@@ -2,26 +2,103 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCart } from './CartContext';
 import axios from 'axios';
-
+import {loadStripe} from "@stripe/stripe-js"
+import {toast,Bounce} from "react-toastify"
 const Watch = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
   const { id } = useParams();
-
   const [watchdetails, setwatchdetails] = useState([]);
   const [watchdata, setwatchdata] = useState({});
   const [quantity, setquantity] = useState(0);
   const [relatedwatches, setrelatedwatches] = useState([]);
   const [relatedStart, setRelatedStart] = useState(0);
   const [relatedVisible, setRelatedVisible] = useState(4);
-
+  const key = import.meta.env.VITE_CURRENCY_CONVERTER
+  const stripekey = import.meta.env.VITE_STRIPE_KEY
+  const BASE_URL = `https://v6.exchangerate-api.com/v6/${key}/latest/`;
+  const convertCurrency = async (from, to, amount) => {
+    try {
+      const response = await axios.get(`${BASE_URL}${from}`);
+      const rate = response.data.conversion_rates[to];
+      if (!rate) {
+        console.log(`Exchange rate for ${to} not found.`);
+        return 0;
+      }
+      var convertedAmount = parseFloat((amount * rate).toFixed(2));
+      return convertedAmount;
+    } catch (error) {
+      console.error("Error fetching exchange rate:", error.message);
+      return 0;
+    }
+  };
   // ✅ Add to cart handler
   const additemstocart = (watchdata, quantity) => {
     if (quantity > 0) {
       addToCart(watchdata, quantity);
     }
   };
+  const pay = async() =>{
+    if(quantity>0)
+    {
+    const items = [{
+      Gender:watchdata.Gender,
+      brand:watchdata.brand,
+      name:watchdata.name,
+      price:watchdata.price,
+      priceUSD:await convertCurrency("LKR", "USD", watchdata.price),
+      quantity:quantity
+    }]
+    const email = localStorage.getItem("email")
+        const token = localStorage.getItem("token")
+        const stripe = await loadStripe(stripekey)
+        if (!token) {
+    toast.error("You are not a registered user. Please login or sign up.", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+    return;
+  }
+  await axios.post(`http://localhost:8000/stripe/checkout`,{
+      items:items,
+      email:email
+    },{
+      headers:{
+        "Authorization":`Bearer ${token}`
+      }
+    }).then(async(res)=>{
+      const session = await res.data;
+    const result = await stripe.redirectToCheckout({
+            sessionId:session.id
+          })
+          if(result.error)
+          {
+            console.log(result.error);
+            alert(result.error.message)
+          }
+    }).catch((error)=>{
+toast.error(error.response.data.message, {
+                                position: "top-right",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: false,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "dark",
+                                transition: Bounce,
+                            })
+    })
 
+  }
+  }
   // ✅ Responsive related items count
   useEffect(() => {
     function updateVisible() {
@@ -150,7 +227,7 @@ const Watch = () => {
             >
               Add to Cart
             </button>
-            <button className="w-full h-[50px] cursor-pointer bg-gray-800 text-white rounded shadow hover:bg-gray-900 transition hover:underline">
+            <button onClick={pay} className="w-full h-[50px] cursor-pointer bg-gray-800 text-white rounded shadow hover:bg-gray-900 transition hover:underline">
               Pay
             </button>
           </div>

@@ -8,6 +8,7 @@ import Watch from './Watch'
 import Cart from './Cart'
 import AdminLayout from "./Adminpages/Layout"
 import Login from "./Login"
+import Orders from './Adminpages/Orders'
 import SignUp from './SignUp'
 import AddProduct from './Adminpages/AddProduct'
 import {ToastContainer} from "react-toastify"
@@ -32,6 +33,7 @@ const App = () => {
             <Route path='dashboard' element={<Dashboard/>}/>
             <Route path='product' element={<Product/>}/>
             <Route path='addProduct' element={<AddProduct/>}/>
+            <Route path='order' element={<Orders/>}/>
       </Route>
     </Routes>
     </div>

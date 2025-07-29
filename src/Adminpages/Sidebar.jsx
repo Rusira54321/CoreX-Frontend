@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
   { name: 'Dashboard', path: '/admin/dashboard' },
-  { name: 'Orders', path: '/admin/orders' },
+  { name: 'Orders', path: '/admin/order' },
   { name: 'Products', path: '/admin/product' },
   { name: 'Users', path: '/admin/users' },
   { name: 'Settings', path: '/admin/settings' },
