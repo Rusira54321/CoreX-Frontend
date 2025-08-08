@@ -1,67 +1,60 @@
-import React, { useState } from "react";
-import axios from "axios";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import {toast,Bounce} from "react-toastify"
-const AddProduct = () => {
-  const [image, setImage] = useState(null);
-  const [name,setname] = useState("")
-  const [brand,setbrand] = useState("")
-  const [price,setprice] = useState("")
-  const [gender,setgender] = useState("")
-  const [description,setdescription] = useState("")
-  const [stock,setstock] = useState("")
-  const handleSubmit = async(e) =>{
-      e.preventDefault()
-      const token = localStorage.getItem("token")
-      const formdata = new FormData()
-      formdata.append("productPic",image)
-      formdata.append("name",name)
-      formdata.append("price",price)
-      formdata.append("description",description)
-      formdata.append("brand",brand)
-      formdata.append("gender",gender)
-      formdata.append("stock",stock)
-      const URL = "http://localhost:8000/product/addproducts"
-      await axios.post(URL,formdata,{
-         headers:{
-            "Authorization":`Bearer ${token}`
-        }       
-      }).then((res)=>{
+
+const EditProduct = () => {
+  
+    const {id} = useParams()
+    const [gender,setgender] = useState("")
+    const [brand,setbrand] = useState("")
+    const [description,setdescription] = useState("")
+    const [name,setname] = useState("")
+    const [price,setprice] = useState(0)
+    const [stock,setstock] = useState(0) 
+    const url = `http://localhost:8000/product/getproductbyid/${id}`
+    const url1 = `http://localhost:8000/product/updatedProduct/${id}`
+    const getProductData = async() =>{
+            await axios.get(url).then((res)=>{
+                setgender(res.data.product.Gender)
+                setbrand(res.data.product.brand)
+                setdescription(res.data.product.description)
+                setname(res.data.product.name)
+                setprice(res.data.product.price)
+                setstock(res.data.product.stock)
+            })
+        }
+    useEffect(()=>{
+        getProductData()
+    },[])
+    const handleSubmit = async(e) =>{
+        e.preventDefault()
+        const token = localStorage.getItem("token")
+        await axios.post(url1,{
+          stock:stock,
+          price:price
+        },{
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        }).then((res)=>{
           toast.success(res.data.message, {
-                                position: "top-right",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: false,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                                transition: Bounce,
-                                });
-          setImage(null)
-          setname("")
-          setbrand("")
-          setprice("")
-          setgender("")
-          setdescription("")
-          setstock("")
-          e.target.reset()
-        
-      }).catch((error)=>{
-        toast.error(error.response.data.message, {
-position: "top-right",
-autoClose: 5000,
-hideProgressBar: false,
-closeOnClick: false,
-pauseOnHover: true,
-draggable: true,
-progress: undefined,
-theme: "dark",
-transition: Bounce,
-});
-      })
-  }
+                                          position: "top-right",
+                                          autoClose: 5000,
+                                          hideProgressBar: false,
+                                          closeOnClick: false,
+                                          pauseOnHover: true,
+                                          draggable: true,
+                                          progress: undefined,
+                                          theme: "light",
+                                          transition: Bounce,
+                                          });
+          getProductData()
+        })
+    }
   return (
     <div className="flex min-h-screen mt-10 md:mt-0 w-full justify-center items-center bg-gray-100 p-4">
+      
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-6 md:p-10">
         
         {/* Heading */}
@@ -76,7 +69,7 @@ transition: Bounce,
               Name
             </label>
             <input
-            required
+            disabled
               value={name}
               onChange={(e)=>setname(e.target.value)}
               type="text"
@@ -91,7 +84,7 @@ transition: Bounce,
               Brand
             </label>
             <input
-            required
+            disabled
             value={brand}
             onChange={(e)=>setbrand(e.target.value)}
               type="text"
@@ -121,7 +114,7 @@ transition: Bounce,
             <label className="hidden md:block w-32 font-medium text-gray-700">
               Gender
             </label>
-            <select required onChange={(e)=>setgender(e.target.value)} value={gender} className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select  disabled onChange={(e)=>setgender(e.target.value)} value={gender} className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option value="">Select Gender</option>
               <option value="Men">Men</option>
               <option value="Women">Women</option>
@@ -135,7 +128,7 @@ transition: Bounce,
               Description
             </label>
             <textarea
-            required
+            disabled
             value={description}
             onChange={(e)=>setdescription(e.target.value)}
               rows="3"
@@ -160,21 +153,7 @@ transition: Bounce,
             />
           </div>
 
-          {/* Product Image */}
-          <div className="flex flex-col md:flex-row gap-3">
-            <label className="hidden md:block w-32 font-medium text-gray-700">
-              Product Image
-            </label>
-            <input
-            required
-              type="file"
-              onChange={(e) => setImage(e.target.files[0])}
-              className="w-full cursor-pointer text-sm text-gray-700 border border-gray-300 rounded-lg p-3
-                         file:mr-4 file:py-2 file:px-4 
-                         file:rounded-full file:border-0 file:text-sm file:font-semibold
-                         file:bg-blue-600 file:text-white hover:file:bg-blue-700"
-            />
-          </div>
+         
 
           {/* Submit Button */}
           <div className="flex justify-center mt-6">
@@ -188,7 +167,7 @@ transition: Bounce,
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddProduct;
+export default EditProduct

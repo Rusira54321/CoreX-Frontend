@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingCart, LogIn, Menu, X } from 'lucide-react';
+import { ShoppingCart, LogIn, Menu, X,CircleUser,ListOrdered } from 'lucide-react';
 import {Link} from "react-router-dom"
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,6 +27,12 @@ const Header = () => {
           <Link to="/login" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
             <LogIn className="h-5 w-5 mr-1" /> Login
           </Link>
+          <Link to="/order" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+            <ListOrdered className="h-5 w-5 mr-1" /> Orders
+          </Link>
+          <Link to="/setting" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+            <CircleUser className="h-5 w-5 mr-1" />
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -48,10 +54,16 @@ const Header = () => {
             Watches
           </Link>
           <Link to="/cart" className="block text-gray-700 hover:text-blue-600 font-medium flex items-center">
-            <ShoppingCart className="h-5 w-5 mr-1" /> Cart
+            Cart
           </Link>
           <Link to="/login" className="block text-gray-700 hover:text-blue-600 font-medium flex items-center">
-            <LogIn className="h-5 w-5 mr-1" /> Login
+            Login
+          </Link>
+          <Link to="/order" className="block text-gray-700 hover:text-blue-600 font-medium flex items-center">
+            Orders
+          </Link>
+          <Link to="/setting" className="block text-gray-700 hover:text-blue-600 font-medium flex items-center">
+            Settings
           </Link>
         </div>
       )}

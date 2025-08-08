@@ -7,6 +7,7 @@ const Orders = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -69,26 +70,38 @@ const Orders = () => {
             
         })
   }
-  // Filter orders based on search
+  // Filter orders based on search and status
   const filteredOrders = orders.filter(order => {
     const term = search.toLowerCase();
-    return (
+    const matchesSearch =
       order.customer_name?.toLowerCase().includes(term) ||
       order.customer_email?.toLowerCase().includes(term) ||
-      order.customer_address?.toLowerCase().includes(term)
-    );
+      order.customer_address?.toLowerCase().includes(term);
+    const matchesStatus = statusFilter ? order.status === statusFilter : true;
+    return matchesSearch && matchesStatus;
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 py-6 px-1 sm:px-6 flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 py-15 md:py-6  px-1 sm:px-6  flex flex-col items-center">
       <div className="w-full max-w-6xl bg-white/90 shadow-2xl rounded-3xl p-3 sm:p-8 border border-blue-100">
         <h1 className="text-center text-2xl sm:text-4xl font-extrabold tracking-tight text-blue-900 mb-2 flex items-center justify-center gap-2">
           <span className="text-3xl sm:text-5xl">📦</span> Customer Orders
         </h1>
         <p className="text-center text-gray-500 mb-6 sm:mb-8 text-sm sm:text-base">Manage and track all customer orders in one place.</p>
 
-        {/* Search Bar */}
-        <div className="flex flex-col sm:flex-row sm:justify-end mb-4 sm:mb-6 gap-2">
+        {/* Filter by Status and Search Bar */}
+        <div className="flex flex-col sm:flex-row sm:justify-between mb-4 sm:mb-6 gap-2">
+          <select
+            className="w-full sm:w-48 px-3 py-2 border border-blue-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 text-blue-900 bg-white text-sm sm:text-base"
+            value={statusFilter}
+            onChange={e => setStatusFilter(e.target.value)}
+          >
+            <option value="">All Statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
           <input
             type="text"
             className="w-full sm:w-80 px-3 py-2 border border-blue-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 text-blue-900 bg-white placeholder:text-blue-400 text-sm sm:text-base"
