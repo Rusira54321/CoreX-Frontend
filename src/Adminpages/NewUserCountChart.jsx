@@ -5,7 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 const NewUserCountChart = () => {
   const [year,setYear] = useState(new Date().getFullYear())
   const [data,setdata] = useState([])
-  const URL = `http://localhost:8000/user/monthNewUsers?year=${year}`
+  const URL = `https://corexbackend.onrender.com/user/monthNewUsers?year=${year}`
   useEffect(()=>{
         const getdata = async() =>{
             await axios.get(URL).then((res)=>{

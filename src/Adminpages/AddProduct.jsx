@@ -20,7 +20,7 @@ const AddProduct = () => {
       formdata.append("brand",brand)
       formdata.append("gender",gender)
       formdata.append("stock",stock)
-      const URL = "http://localhost:8000/product/addproducts"
+      const URL = "https://corexbackend.onrender.com/product/addproducts"
       await axios.post(URL,formdata,{
          headers:{
             "Authorization":`Bearer ${token}`

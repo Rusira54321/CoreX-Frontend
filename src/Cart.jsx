@@ -75,7 +75,7 @@ const Cart = () => {
     const email = localStorage.getItem("email")
     const token = localStorage.getItem("token")
     const stripe = await loadStripe(stripekey)
-    await axios.post(`http://localhost:8000/stripe/checkout`,{
+    await axios.post(`https://corexbackend.onrender.com/stripe/checkout`,{
       items:updatedItems,
       email:email
     },{
@@ -121,7 +121,7 @@ toast.error(error.response.data.message, {
               <div className="mb-6 border rounded-lg p-4 shadow bg-white" key={item._id}>
                 <div className="flex flex-col md:flex-row gap-4">
                   <img
-                    src={`http://localhost:8000/images/${item.image}`}
+                    src={`https://corexbackend.onrender.com/images/${item.image}`}
                     className="h-[150px] w-full md:w-[200px] object-cover rounded-lg border"
                     alt={item.name}
                   />

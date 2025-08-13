@@ -5,8 +5,8 @@ import {toast,Bounce} from "react-toastify"
 const Setting = () => {
   const [password,setPassword] = useState("")
   const [address,setaddress] = useState("")
-  const URL = "http://localhost:8000/user/updateUserDetails"
-  const getURL = "http://localhost:8000/user/getuser"
+  const URL = "https://corexbackend.onrender.com/user/updateUserDetails"
+  const getURL = "https://corexbackend.onrender.com/user/getuser"
   const getdata = async() =>{
     const email = localStorage.getItem("email")
     const token1 = localStorage.getItem("token")

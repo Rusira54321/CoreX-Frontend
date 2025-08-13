@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 const Order = () => {
     const [orders,setOrders] = useState([])
-    const URL = "http://localhost:8000/order/getUserOrders"
+    const URL = "https://corexbackend.onrender.com/order/getUserOrders"
     useEffect(()=>{
         const email = localStorage.getItem("email")
         const getOrders = async() =>{

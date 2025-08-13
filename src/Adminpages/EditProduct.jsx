@@ -12,8 +12,8 @@ const EditProduct = () => {
     const [name,setname] = useState("")
     const [price,setprice] = useState(0)
     const [stock,setstock] = useState(0) 
-    const url = `http://localhost:8000/product/getproductbyid/${id}`
-    const url1 = `http://localhost:8000/product/updatedProduct/${id}`
+    const url = `https://corexbackend.onrender.com/product/getproductbyid/${id}`
+    const url1 = `https://corexbackend.onrender.com/product/updatedProduct/${id}`
     const getProductData = async() =>{
             await axios.get(url).then((res)=>{
                 setgender(res.data.product.Gender)

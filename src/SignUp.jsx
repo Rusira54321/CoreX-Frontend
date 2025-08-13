@@ -7,7 +7,7 @@ const SignUp = () => {
     const [email,setemail] = useState("")
     const [password,setpassword] = useState("")
     const [address,setaddress] = useState("")
-    const URL = "http://localhost:8000/user/register"
+    const URL = "https://corexbackend.onrender.com/user/register"
     const handleSubmit = async(e) =>{
             e.preventDefault()
             await axios.post(URL,

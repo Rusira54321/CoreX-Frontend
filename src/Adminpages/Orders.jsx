@@ -13,7 +13,7 @@ const Orders = () => {
     const fetchOrders = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:8000/order/getorders", {
+        const response = await axios.get("https://corexbackend.onrender.com/order/getorders", {
           headers: {
             "Authorization": `Bearer ${token}`
           }
@@ -31,7 +31,7 @@ const Orders = () => {
   }, []);
   const updateOrderStatus = async(id,value) =>{
     const token = localStorage.getItem("token");
-        await axios.post("http://localhost:8000/order/updateOrders",{
+        await axios.post("https://corexbackend.onrender.com/order/updateOrders",{
             id:id,
             value:value
         },{
@@ -42,7 +42,7 @@ const Orders = () => {
             const fetchOrders = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:8000/order/getorders", {
+        const response = await axios.get("https://corexbackend.onrender.com/order/getorders", {
           headers: {
             "Authorization": `Bearer ${token}`
           }

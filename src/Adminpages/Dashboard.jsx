@@ -9,9 +9,9 @@ const Dashboard = () => {
   const [outofStocks,setOutOfStocks] = useState(0)
   const [pendingCount,setPendingCount] = useState(0)
   const [NoUsers,setNoUsers] = useState(0)
-  const url = "http://localhost:8000/product/getoutstockcount"
-  const url1 = "http://localhost:8000/order/numberPOrders"
-  const url2 = "http://localhost:8000/user/noOfusers"
+  const url = "https://corexbackend.onrender.com/product/getoutstockcount"
+  const url1 = "https://corexbackend.onrender.com/order/numberPOrders"
+  const url2 = "https://corexbackend.onrender.com/user/noOfusers"
   const navigate = useNavigate();
 
   // Logout handler

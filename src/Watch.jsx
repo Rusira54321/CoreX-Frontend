@@ -66,7 +66,7 @@ const Watch = () => {
     });
     return;
   }
-  await axios.post(`http://localhost:8000/stripe/checkout`,{
+  await axios.post(`https://corexbackend.onrender.com/stripe/checkout`,{
       items:items,
       email:email
     },{
@@ -121,7 +121,7 @@ toast.error(error.response.data.message, {
   useEffect(() => {
     const getwatchdatas = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/product/getallwatches');
+        const res = await axios.get('https://corexbackend.onrender.com/product/getallwatches');
         setwatchdetails(res.data.watches);
       } catch (error) {
         console.error('Error fetching watches:', error);
@@ -182,7 +182,7 @@ toast.error(error.response.data.message, {
         {/* Watch Image */}
         <div className="w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px] flex justify-center items-center">
           <img
-            src={`http://localhost:8000/images/${watchdata.image}`}
+            src={`https://corexbackend.onrender.com/images/${watchdata.image}`}
             alt={watchdata.name}
             className="w-full h-full object-cover rounded-lg shadow-lg max-w-md"
           />
@@ -278,7 +278,7 @@ toast.error(error.response.data.message, {
                 className="bg-white cursor-pointer rounded-xl shadow-md hover:shadow-xl transition duration-300 p-4 flex flex-col items-center"
               >
                 <img
-                  src={`http://localhost:8000/images/${watch.image}`}
+                  src={`https://corexbackend.onrender.com/images/${watch.image}`}
                   alt={watch.name}
                   className="w-full h-40 object-cover rounded-md mb-3"
                 />

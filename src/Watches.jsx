@@ -16,7 +16,7 @@ const Watches = () => {
   
   const getallwatches = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/product/getallwatches");
+      const res = await axios.get("https://corexbackend.onrender.com/product/getallwatches");
       setallwatches(res.data.watches);
 
       // ✅ Format the data right after fetching
@@ -150,7 +150,7 @@ const Watches = () => {
             className="bg-white cursor-pointer rounded-xl shadow-md hover:shadow-xl transition duration-300 p-4 flex flex-col items-center"
           >
             <img
-              src={`http://localhost:8000/images/${watch.image}`}
+              src={`https://corexbackend.onrender.com/images/${watch.image}`}
               alt={watch.name}
               className="w-full h-48 object-cover rounded-md mb-4"
             />

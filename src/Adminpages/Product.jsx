@@ -13,7 +13,7 @@ const Product = () => {
   const [filterproducts, setfilterproducts] = useState([])
   const navigate = useNavigate()
   const getallProducts = async () => {
-      await axios.get("http://localhost:8000/product/getallwatches").then((res) => {
+      await axios.get("https://corexbackend.onrender.com/product/getallwatches").then((res) => {
         allproducts = res.data.watches
         filterprodcutss = allproducts
         if (!searchproduct && !brand && !availability) {
@@ -39,7 +39,7 @@ const Product = () => {
     getallProducts()
   }, [searchproduct, brand, availability])
   const handleDelete = async(id) =>{
-    const deleteURL = `http://localhost:8000/product/deleteproduct/${id}`
+    const deleteURL = `https://corexbackend.onrender.com/product/deleteproduct/${id}`
     const token = localStorage.getItem("token")
     await axios.delete(deleteURL,{
         headers: {
@@ -156,7 +156,7 @@ const Product = () => {
               className="bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300 p-4 flex flex-col items-center"
             >
               <img
-                src={`http://localhost:8000/images/${watch.image}`}
+                src={`https://corexbackend.onrender.com/images/${watch.image}`}
                 alt={watch.name}
                 className="w-full h-48 object-cover rounded-md mb-4"
               />

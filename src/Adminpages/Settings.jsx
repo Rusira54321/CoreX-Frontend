@@ -5,7 +5,7 @@ const Settings = () => {
   const [name,setname] = useState("")
   const [email,setemail] = useState("")
   const [password,setpassword] = useState("")
-  const getsettingURL = "http://localhost:8000/user/getAdmin"
+  const getsettingURL = "https://corexbackend.onrender.com/user/getAdmin"
   useEffect(()=>{
     const token = localStorage.getItem("token")
     const getadmin = async() =>{
@@ -24,7 +24,7 @@ const Settings = () => {
   const handleSubmit = async(e) =>{
         e.preventDefault()
         const token = localStorage.getItem("token")
-        await axios.post("http://localhost:8000/user/updateAdmin",{
+        await axios.post("https://corexbackend.onrender.com/user/updateAdmin",{
             name:name,
             email:email,
             password:password

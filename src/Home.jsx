@@ -9,13 +9,13 @@ const Home = () => {
   useEffect(()=>{
     const token = localStorage.getItem("token")
     const getlatestproducts = async() =>{
-        await axios.get("http://localhost:8000/product/getlatestproduct").then((res)=>{
+        await axios.get("https://corexbackend.onrender.com/product/getlatestproduct").then((res)=>{
           setlatestproducts(res.data.product)
         })
     }
     getlatestproducts()
     const getbestsellingproducts = async() =>{
-        await axios.get("http://localhost:8000/product/getbestsellingproduct").then((res)=>{
+        await axios.get("https://corexbackend.onrender.com/product/getbestsellingproduct").then((res)=>{
             setbestsellers(res.data.product)
         })
     }
@@ -85,7 +85,7 @@ const Home = () => {
         {
             latestproducts.map((watch, index) => (
               <div key={index} onClick={()=>{navigate(`/watch/${watch._id}`)}} className="bg-white cursor-pointer shadow-lg rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
-                <img src={`http://localhost:8000/images/${watch.image}`} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
+                <img src={`https://corexbackend.onrender.com/images/${watch.image}`} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-1">{watch.name}</h3>
                   <p className="text-gray-500 mb-3 text-sm">{watch.description}</p>
@@ -114,7 +114,7 @@ const Home = () => {
         {
             bestsellers.map((watch, index) => (
               <div key={index} onClick={()=>{navigate(`/watch/${watch._id}`)}} className="bg-white shadow-lg cursor-pointer rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-100">
-                <img src={`http://localhost:8000/images/${watch.image}`} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
+                <img src={`https://corexbackend.onrender.com/images/${watch.image}`} alt={watch.name} className="w-full h-48 object-cover rounded-t-2xl" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-1">{watch.name}</h3>
                   <p className="text-gray-500 mb-3 text-sm">{watch.description}</p>

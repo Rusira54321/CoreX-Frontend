@@ -7,7 +7,7 @@ const Login = () => {
   const navigate = useNavigate()
   const [email,setemail] = useState("")
   const [password,setpassword] = useState("")
-  const URL = "http://localhost:8000/user/login"
+  const URL = "https://corexbackend.onrender.com/user/login"
   const handleSubmit = async(e) =>{
         e.preventDefault()
         await axios.post(URL,{

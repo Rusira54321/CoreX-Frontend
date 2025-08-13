@@ -3,7 +3,7 @@ import axios from 'axios'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from "recharts"
 const MonthlyRevenueChart = () => {
     const [year,setYear] = useState(new Date().getFullYear())
-    const url = `http://localhost:8000/order/getmonthlyrevenue?year=${year}`
+    const url = `https://corexbackend.onrender.com/order/getmonthlyrevenue?year=${year}`
     const [data,setdata] = useState([])
     useEffect(()=>{
         const getdata = async() =>{

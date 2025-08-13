@@ -12,7 +12,7 @@ const User = () => {
       const fetchOrders = async () => {
         const token = localStorage.getItem("token");
         try {
-          const response = await axios.get("http://localhost:8000/user/getusers", {
+          const response = await axios.get("https://corexbackend.onrender.com/user/getusers", {
             headers: {
               "Authorization": `Bearer ${token}`
             }
